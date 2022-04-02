@@ -11,7 +11,10 @@ import requests as requests
 
 BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAIxcawEAAAAA9gyCYhkWb2BQ2Mp5tVQltjIpneU%3DbfnRngdlgXK8vzn79NKQopvVoqWJ3NsbwM5MKVV3V7V7Z2POYi"
 WEATHER_API_KEY = "991db1f58950453daea225235222803"
-TWITTER_SAMPLE_URL = "https://api.twitter.com/2/tweets/sample/stream?expansions=geo.place_id"
+TWITTER_BASE_URL = "https://api.twitter.com"
+TWITTER_SAMPLE_PATH = "/2/tweets/sample/stream?expansions=geo.place_id"
+TWITTER_LOCATION_PATH = "/2/tweets/"
+
 
 
 class Weather:
@@ -22,7 +25,15 @@ class Weather:
         self.last_updated = last_updated
 
 
+class TweetLatLong:
+    def __init__(self, timestamp: datetime, lat: float, long: float):
+        self.timestamp = timestamp
+        self.lat = lat
+        self.long = long
+
+
 class Integrations:
+
     def get_weather(self, lat, long) -> Weather:
         request_url = f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={lat},{long}"
         response = requests.get(request_url)
@@ -55,11 +66,21 @@ class Integrations:
         r.headers["User-Agent"] = "v2FilteredStreamPython"
         return r
 
-    def get_twitter_stream(self):
+    def twitter_bearer_oauth_tweet(self, r):
+        """
+        Method required by bearer token authentication.
+        """
+
+        r.headers["Authorization"] = f"Bearer {BEARER_TOKEN}"
+        r.headers["User-Agent"] = "v2TweetLookupPython"
+        return r
+
+    def stream_twitter_locations(self):
 
         # open to tweet sample stream
         response = requests.get(
-            TWITTER_SAMPLE_URL,
+            TWITTER_BASE_URL + TWITTER_SAMPLE_PATH,
+            # auth=self.twitter_bearer_oauth(auth_type="v2FilteredStreamPython", r = None),
             auth=self.twitter_bearer_oauth,
             stream=True,
         )
@@ -79,14 +100,24 @@ class Integrations:
                 # verify that returned data has a geotag location
                 if json_response['data']['geo'] != {}:
                     print(json.dumps(json_response, indent=4, sort_keys=True))
+                    place_id = json_response['data']['geo']['place_id']
+
+                    # enrichment_request_url = "https://api.twitter.com/2/tweets?{}&{}".format(ids, tweet_fields)
+
+                    # enrichment_request_url = TWITTER_BASE_URL + TWITTER_LOCATION_PATH + f':{place_id}.json'
+                    # enrichment_response = requests.get(
+                    #     enrichment_request_url,
+                    #     auth=self.twitter_bearer_oauth_tweet(),
+                    # )
 
 
 def main():
 
-    integrations = Integrations()
+    k = 5 # TODO move this to user input
 
     # start the stream of sample tweets
-    integrations.get_twitter_stream()
+    integrations = Integrations()
+    integrations.stream_twitter_locations()
 
 if __name__ == "__main__":
     main()
