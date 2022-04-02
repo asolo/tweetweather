@@ -13,7 +13,8 @@ class TestMethods(unittest.TestCase):
         expected_country = "France"
 
         # ACT
-        result = get_weather(lat=lat, long=long)
+        test = Integrations()
+        result = test.get_weather(lat=lat, long=long)
 
         # ASSERT
         self.assertEqual(expected_country, result.country)
