@@ -99,16 +99,18 @@ class Integrations:
 
                 # verify that returned data has a geotag location
                 if json_response['data']['geo'] != {}:
-                    print(json.dumps(json_response, indent=4, sort_keys=True))
-                    place_id = json_response['data']['geo']['place_id']
+                    # print(json.dumps(json_response, indent=4, sort_keys=True))
+                    tweet_id = json_response['data']['id']
 
-                    # enrichment_request_url = "https://api.twitter.com/2/tweets?{}&{}".format(ids, tweet_fields)
+                    enrichment_request_url = f"https://api.twitter.com/2/tweets/{tweet_id}?expansions=geo.place_id&place.fields=full_name,geo,id,place_type"
 
                     # enrichment_request_url = TWITTER_BASE_URL + TWITTER_LOCATION_PATH + f':{place_id}.json'
-                    # enrichment_response = requests.get(
-                    #     enrichment_request_url,
-                    #     auth=self.twitter_bearer_oauth_tweet(),
-                    # )
+                    enrichment_response = requests.get(
+                        enrichment_request_url,
+                        auth=self.twitter_bearer_oauth_tweet,
+                    )
+
+                    print(json.loads(enrichment_response.text))
 
 
 def main():
