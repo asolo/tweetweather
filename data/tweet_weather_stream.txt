@@ -1,0 +1,6 @@
+Tweet Location: Palos Heights - United States of America,temp_f: 55.0, last_updated: 2022-04-06 11:00:00
+Tweet Location: Liberty Lake - United States of America,temp_f: 43.0, last_updated: 2022-04-06 11:00:00
+Tweet Location: Ralalpindi - Pakistan,temp_f: 75.6, last_updated: 2022-04-06 11:45:00
+Tweet Location: Nogu - Nigeria,temp_f: 87.8, last_updated: 2022-04-06 11:00:00
+Tweet Location: Corrales - Colombia,temp_f: 63.9, last_updated: 2022-04-06 11:00:00
+Tweet Location: Joue - France,temp_f: 53.6, last_updated: 2022-04-06 11:45:00

@@ -1,0 +1,6 @@
+Tweet Location: Palos Heights - United States of America,rolling_avg_temp_f: 55.0, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
+Tweet Location: Liberty Lake - United States of America,rolling_avg_temp_f: 43.0, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
+Tweet Location: Ralalpindi - Pakistan,rolling_avg_temp_f: 75.6, last_updated: 2022-04-06 11:45:00number_of_data_points: 1
+Tweet Location: Nogu - Nigeria,rolling_avg_temp_f: 87.8, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
+Tweet Location: Corrales - Colombia,rolling_avg_temp_f: 63.9, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
+Tweet Location: Joue - France,rolling_avg_temp_f: 53.6, last_updated: 2022-04-06 11:45:00number_of_data_points: 1
