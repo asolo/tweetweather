@@ -1,3 +1,0 @@
-1. if there are n tweets for a location and  0 < n < k, then the rolling average for that location is based on n
- temperatures instead of k
-2. Location is the "location" field as described by the weatherapi and not further combined/refined

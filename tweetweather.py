@@ -1,26 +1,22 @@
-
-# TODO use the more straightforward has:geo tag in when upgraded from Sandbox developer level- link to code
-# {"value": "twitter data has:geo"}
-import os
-import sys
 from datetime import datetime
 import json
+import os
 import requests as requests
+import sys
 
-# bearer_token = os.environ.get("BEARER_TOKEN")
+BEARER_TOKEN = os.environ.get("BEARER_TOKEN")
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
 
-BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAIxcawEAAAAA9gyCYhkWb2BQ2Mp5tVQltjIpneU%3DbfnRngdlgXK8vzn79NKQopvVoqWJ3NsbwM5MKVV3V7V7Z2POYi"
-WEATHER_API_KEY = "991db1f58950453daea225235222803"
+
 TWITTER_BASE_URL = "https://api.twitter.com"
 TWITTER_SAMPLE_PATH = "/2/tweets/sample/stream?expansions=geo.place_id"
-TWITTER_LOCATION_PATH = "/2/tweets/"
+TWITTER_TWEET_PATH = "/2/tweets/"
+TWITTER_EXPANSIONS = "?expansions=geo.place_id&place.fields=full_name,geo,id,place_type"
 STREAM_OUTPUT_FILE = "data/tweet_weather_stream.txt"
 AVERAGE_OUTPUT_FILE = "data/tweet_weather_average.txt"
 
 # todo implement a real cache like redis, or persist to DB to avoid memory exceptions
 CACHE_OF_TEMPS = {}
-
-
 
 
 class Weather:
@@ -40,7 +36,8 @@ class TweetLatLong:
 
 class Integrations:
 
-    def get_weather(self, lat, long) -> Weather:
+    @staticmethod
+    def get_weather(lat, long) -> Weather:
         request_url = f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={lat},{long}"
         response = requests.get(request_url)
         if response.status_code != 200:
@@ -63,7 +60,8 @@ class Integrations:
 
         return Weather(location, country, temperatue_f, last_updated)
 
-    def twitter_bearer_oauth(self, r):
+    @staticmethod
+    def twitter_bearer_oauth(r):
         """
         Method required by bearer token authentication.
         """
@@ -72,7 +70,9 @@ class Integrations:
         r.headers["User-Agent"] = "v2FilteredStreamPython"
         return r
 
-    def twitter_bearer_oauth_tweet(self, r):
+    # todo combine repeated code
+    @staticmethod
+    def twitter_bearer_oauth_tweet( r):
         """
         Method required by bearer token authentication.
         """
@@ -81,22 +81,21 @@ class Integrations:
         r.headers["User-Agent"] = "v2TweetLookupPython"
         return r
 
-    def stream_twitter_locations(self, k):
+    def stream_twitter_locations(self, k: int) -> None:
 
-
-
-        # clean up an existing file
+        # clean up an existing files
         if os.path.exists(STREAM_OUTPUT_FILE):
             os.remove(STREAM_OUTPUT_FILE)
 
-        # # create a new one
-        # os.create(STREAM_OUTPUT_FILE)
+        if os.path.exists(AVERAGE_OUTPUT_FILE):
+            os.remove(AVERAGE_OUTPUT_FILE)
 
-        # Open a file in read/write mode
+        # Open two files in write mode
         with open(STREAM_OUTPUT_FILE, "w") as writer_stream:
             with open(AVERAGE_OUTPUT_FILE, "w") as writer_avg:
                 # write the headers for the output files
 
+                # Todo: for twitter connections add an exponential back off to handle errors like code 429
                 # open to tweet sample stream
                 response = requests.get(
                     TWITTER_BASE_URL + TWITTER_SAMPLE_PATH,
@@ -111,6 +110,7 @@ class Integrations:
                         )
                     )
 
+                line_count = 0
                 # iterate over stream of results from twitter feed to filter those with a location only
                 for response_line in response.iter_lines():
                     if response_line:
@@ -121,8 +121,8 @@ class Integrations:
                             tweet_id = json_response['data']['id']
 
                             # todo: future improvement: can we batch our enrichment requests
-                            # todo clean up this request
-                            enrichment_request_url = f"https://api.twitter.com/2/tweets/{tweet_id}?expansions=geo.place_id&place.fields=full_name,geo,id,place_type"
+                            enrichment_request_url = TWITTER_BASE_URL + TWITTER_TWEET_PATH \
+                                                     + str(tweet_id) + TWITTER_EXPANSIONS
 
                             enrichment_response = requests.get(
                                 enrichment_request_url,
@@ -140,7 +140,6 @@ class Integrations:
                             enriched_tweet = json.loads(enrichment_response.text)
                             tweet_geo = enriched_tweet["includes"]["places"][0]["geo"]
 
-
                             # does this tweet have point or a bbox
                             if tweet_geo["type"] == "Feature":
                                 bbox_coords = tweet_geo["bbox"]
@@ -148,8 +147,6 @@ class Integrations:
                                 # get the centroid
                                 long = round((bbox_coords[0]+bbox_coords[2])/2,7)
                                 lat = round((bbox_coords[1]+bbox_coords[3])/2,7)
-
-                                print(long, lat)
 
                             elif tweet_geo["type"] == "Point":
 
@@ -178,6 +175,7 @@ class Integrations:
 
                                 # bump a temp if we are at the max
                                 if len(temps_array) == k:
+                                    print("pop off")
                                     temps_array.pop(0)
 
                                 # add the newest temp to the other end
@@ -197,20 +195,26 @@ class Integrations:
                                     + f"rolling_avg_temp_f: {average_temp}, last_updated: {weather.last_updated}, "\
                                     + f"number_of_data_points: {number_of_data_points}\n"
 
-
-
                             # write rolling average value cache to streaming file 2
                             writer_avg.write(line_weather_average)
+
+                            # print a status every 10 lines
+                            if line_count % 10 == 0:
+                                print(f"{line_count} lines streamed so far. use ctrl+c to stop stream")
+
+                            line_count +=1
 
 
 def main():
 
     # check if k has been configured from command line
-    if not sys.argv:
+    if len(sys.argv) == 1:
         # set a default value of k if not set
         k = 5
+        print("k is set to default", k)
     else:
-        k = sys.argv[0]
+        k = sys.argv[1]
+        print("k is configured:", k)
 
     # start the stream of sample tweets
     integrations = Integrations()
