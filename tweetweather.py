@@ -2,6 +2,7 @@
 # TODO use the more straightforward has:geo tag in when upgraded from Sandbox developer level- link to code
 # {"value": "twitter data has:geo"}
 import os
+import sys
 from datetime import datetime
 import json
 import requests as requests
@@ -204,11 +205,17 @@ class Integrations:
 
 def main():
 
-    k = 5 # TODO move this to user input
+    # check if k has been configured from command line
+    if not sys.argv:
+        # set a default value of k if not set
+        k = 5
+    else:
+        k = sys.argv[0]
 
     # start the stream of sample tweets
     integrations = Integrations()
     integrations.stream_twitter_locations(k=k)
+
 
 if __name__ == "__main__":
     main()

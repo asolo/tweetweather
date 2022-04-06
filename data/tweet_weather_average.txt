@@ -1,6 +1,37 @@
-Tweet Location: Palos Heights - United States of America,rolling_avg_temp_f: 55.0, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
-Tweet Location: Liberty Lake - United States of America,rolling_avg_temp_f: 43.0, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
-Tweet Location: Ralalpindi - Pakistan,rolling_avg_temp_f: 75.6, last_updated: 2022-04-06 11:45:00number_of_data_points: 1
-Tweet Location: Nogu - Nigeria,rolling_avg_temp_f: 87.8, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
-Tweet Location: Corrales - Colombia,rolling_avg_temp_f: 63.9, last_updated: 2022-04-06 11:00:00number_of_data_points: 1
-Tweet Location: Joue - France,rolling_avg_temp_f: 53.6, last_updated: 2022-04-06 11:45:00number_of_data_points: 1
+Tweet Location: Turn Of River - United States of America,rolling_avg_temp_f: 51.1, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Savage - United States of America,rolling_avg_temp_f: 39.9, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Holland - United States of America,rolling_avg_temp_f: 54.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Sha'abah - Saudi Arabia,rolling_avg_temp_f: 75.2, last_updated: 2022-04-06 13:00:00, number_of_data_points: 1
+Tweet Location: Coco - Brazil,rolling_avg_temp_f: 82.4, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Huntsville Park - United States of America,rolling_avg_temp_f: 73.9, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Craigie - United Kingdom,rolling_avg_temp_f: 42.8, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Jaguaribe - Brazil,rolling_avg_temp_f: 78.8, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Gentingtanah - Indonesia,rolling_avg_temp_f: 72.7, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Al Wurud - Saudi Arabia,rolling_avg_temp_f: 84.2, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Barraquinha - Brazil,rolling_avg_temp_f: 78.4, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Uniepark - South Africa,rolling_avg_temp_f: 71.6, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Mesquita - Brazil,rolling_avg_temp_f: 75.2, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Vila Maranhao - Brazil,rolling_avg_temp_f: 78.8, last_updated: 2022-04-06 13:00:00, number_of_data_points: 1
+Tweet Location: Santiago Do Boqueirao - Brazil,rolling_avg_temp_f: 79.9, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Villa Raquel - Colombia,rolling_avg_temp_f: 93.2, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Richardson - United States of America,rolling_avg_temp_f: 71.6, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: El Boqueron - Colombia,rolling_avg_temp_f: 80.6, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Park Hill - United Kingdom,rolling_avg_temp_f: 50.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Cypress Grove - United States of America,rolling_avg_temp_f: 73.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Rottingdean - United Kingdom,rolling_avg_temp_f: 49.5, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Realengo - Brazil,rolling_avg_temp_f: 77.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Bou Begrat - Algeria,rolling_avg_temp_f: 56.7, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Villa Serrana - Uruguay,rolling_avg_temp_f: 81.3, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Ealing - United Kingdom,rolling_avg_temp_f: 50.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Downey - United States of America,rolling_avg_temp_f: 87.1, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Campinho - Brazil,rolling_avg_temp_f: 80.6, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Centocelle - Italy,rolling_avg_temp_f: 55.4, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Istgah-E `Aqda - Iran,rolling_avg_temp_f: 68.7, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Wooster - United States of America,rolling_avg_temp_f: 57.9, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Bou Begrat - Algeria,rolling_avg_temp_f: 56.7, last_updated: 2022-04-06 14:15:00, number_of_data_points: 2
+Tweet Location: Jaguaribe - Brazil,rolling_avg_temp_f: 78.8, last_updated: 2022-04-06 14:15:00, number_of_data_points: 2
+Tweet Location: Sirkeci - Turkey,rolling_avg_temp_f: 53.6, last_updated: 2022-04-06 13:00:00, number_of_data_points: 1
+Tweet Location: Mcloughlin Heights - United States of America,rolling_avg_temp_f: 59.0, last_updated: 2022-04-06 13:00:00, number_of_data_points: 1
+Tweet Location: La Salina - Venezuela,rolling_avg_temp_f: 86.4, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Akure - Nigeria,rolling_avg_temp_f: 81.0, last_updated: 2022-04-06 14:15:00, number_of_data_points: 1
+Tweet Location: Cooks Crossing - United States of America,rolling_avg_temp_f: 70.0, last_updated: 2022-04-06 13:00:00, number_of_data_points: 1
